@@ -3,24 +3,24 @@ const assert = chai.assert;
 
 suite('Unit Tests', function () {
   suite('Basic Assertions', function () {
-    // #1
+    // #1 How JavaScript Assertions Work
     test('#isNull, #isNotNull', function () {
       assert.isNull(null, 'This is an optional error description - e.g. null is null');
       assert.isNotNull(1, '1 is not null');
     });
-    // #2
+    // #2 Test if a Variable or Function is Defined
     test('#isDefined, #isUndefined', function () {
       assert.isDefined(null, 'null is not undefined');
       assert.isUndefined(undefined, 'undefined IS undefined');
       assert.isDefined('hello', 'A string is not undefined');
     });
-    // #3
+    // #3 Use Assert.isOK and Assert.isNotOK
     test('#isOk, #isNotOk', function () {
       assert.isNotOk(null, 'null is falsey');
       assert.isOk("I'm truthy", 'A string is truthy');
       assert.isOk(true, 'true is truthy');
     });
-    // #4
+    // #4 Test for Truthiness
     test('#isTrue, #isNotTrue', function () {
       assert.isTrue(true, 'true is true');
       assert.isTrue(!!'double negation', 'Double negation of a truthy value is true');
@@ -31,21 +31,21 @@ suite('Unit Tests', function () {
   // -----------------------------------------------------------------------------
 
   suite('Equality', function () {
-    // #5
+    // #5 Use the Double Equals to Assert Equality
     test('#equal, #notEqual', function () {
       assert.equal(12, '12', 'Numbers are coerced into strings with ==');
       assert.notEqual({ value: 1 }, { value: 1 }, '== compares object references');
       assert.equal(6 * '2', '12');
       assert.notEqual(6 + '2', '12');
     });
-    // #6
+    // #6 Use the Triple Equals to Assert Strict Equality
     test('#strictEqual, #notStrictEqual', function () {
       assert.notStrictEqual(6, '6');
       assert.strictEqual(6, 3 * 2);
       assert.strictEqual(6 * '2', 12);
       assert.notStrictEqual([1, 'a', {}], [1, 'a', {}]);
     });
-    // #7
+    // #7 Assert Deep Equality with .deepEqual and .notDeepEqual
     test('#deepEqual, #notDeepEqual', function () {
       assert.deepEqual({ a: '1', b: 5 }, { b: 5, a: '1' }, "The order of keys doesn't matter");
       assert.notDeepEqual({ a: [5, 6] }, { a: [6, 5] }, 'The order of array elements does matter');
@@ -59,21 +59,21 @@ suite('Unit Tests', function () {
   }
 
   suite('Comparisons', function () {
-    // #8
+    // #8 Compare the Properties of Two Elements
     test('#isAbove, #isAtMost', function () {
-      assert.fail('hello'.length, 5);
-      assert.fail(1, 0);
-      assert.fail(Math.PI, 3);
-      assert.fail(1 - Math.random(), 1);
+      assert.isAtMost('hello'.length, 5);
+      assert.isAbove(1, 0);
+      assert.isAbove(Math.PI, 3);
+      assert.isAtMost(1 - Math.random(), 1);
     });
-    // #9
+    // #9 Test if One Value is Below or At Least as Large as Another
     test('#isBelow, #isAtLeast', function () {
-      assert.fail('world'.length, 5);
-      assert.fail(2 * Math.random(), 0);
-      assert.fail(5 % 2, 2);
-      assert.fail(2 / 3, 1);
+      assert.isAtLeast('world'.length, 5);
+      assert.isAtLeast(2 * Math.random(), 0);
+      assert.isBelow(5 % 2, 2);
+      assert.isBelow(2 / 3, 1);
     });
-    // #10
+    // #10 Test if a Value Falls within a Specific Range
     test('#approximately', function () {
       assert.fail(weirdNumbers(0.5), 1, 0);
       assert.fail(weirdNumbers(0.2), 1, 0);
